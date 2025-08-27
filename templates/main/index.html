@@ -1,0 +1,81 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<ul id="categories">
+    {% if category == 'all' %}
+        <li class="current">all</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}{% if sort != 'active' %}?sort={{sort}}{% endif %}">all</a></li>
+    {% endif %}
+
+    {% if category == "books" %}
+        <li class="current">books</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=books{% if sort != 'active' %}&sort={{sort}}{% endif %}">books</a></li>
+    {% endif %}
+
+    {% if category == "clothing" %}
+        <li class="current">clothing</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=clothing{% if sort != 'active' %}&sort={{sort}}{% endif %}">clothing</a></li>
+    {% endif %}
+
+    {% if category == "toys" %}
+        <li class="current">toys</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=toys{% if sort != 'active' %}&sort={{sort}}{% endif %}">toys</a></li>
+    {% endif %}
+
+    {% if category == "office" %}
+        <li class="current">office</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=office{% if sort != 'active' %}&sort={{sort}}{% endif %}">office</a></li>
+    {% endif %}
+    
+    {% if category == "household" %}
+        <li class="current">household</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=household{% if sort != 'active' %}&sort={{sort}}{% endif %}">household</a></li>
+    {% endif %}
+
+    {% if category == "food" %}
+        <li class="current">food</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}?category=food{% if sort != 'active' %}&sort={{sort}}{% endif %}">food</a></li>
+    {% endif %}
+</ul>
+
+<ul id="sorts">
+    {% if sort == "active" %}
+        <li class="current">active</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}{% if category != 'all' %}?category={{category}}{% endif %}">active</a></li>
+    {% endif %}
+
+    {% if sort == "newest" %}
+        <li class="current">newest</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}{% if category != 'all' %}?category={{category}}&{% else %}?{% endif %}sort=newest">newest</a></li>
+    {% endif %}
+
+    {% if sort == "cheapest" %}
+        <li class="current">cheapest</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}{% if category != 'all' %}?category={{category}}&{% else %}?{% endif %}sort=cheapest">cheapest</a></li>
+    {% endif %}
+
+    {% if sort == "priciest" %}
+        <li class="current">priciest</li>
+    {% else %}
+        <li><a href="{{ BASE_URL }}{% if category != 'all' %}?category={{category}}&{% else %}?{% endif %}sort=priciest">priciest</a></li>
+    {% endif %}
+</ul>
+
+
+<div id="listing">
+{% for item in item_list %}
+    {% include 'main/item_entry.html' %}
+{% endfor %}
+<div style="clear:both"></div>
+</div>
+{% endblock %}
