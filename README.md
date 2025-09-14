@@ -8,27 +8,66 @@ There's no mechanism for payment processing - the app merely notes how much each
 
 ![Item page screenshot](http://i.imgur.com/cw5PHKb.png)
 
-## Setup
+## Project Base:
 
-### Settings
+Framework : Django 4.2
 
-First, copy `emg/settings-example.py` to `emg/settings.py`. (The latter file is gitignored, because it'll be different in development vs. production.) Then, you can go through and modify the settings in `emg/settings.py`:
+Database : SQLite
 
-* `SECRET_KEY`: Some long random string. Don't disclose the key used in production, or else all sorts of Bad Things™ will happen.
-* `DEBUG`: Set this to `True` in development if you want to debug errors.
-* `ALLOWED_HOSTS`: You can replace this with a domain if you want to prevent the app from being accessed from any other domain.
-* `BASE_URL`: If the app is hosted on a non-root path (e.g. `www.example.com/mysite`), then this should be the path, surrounded by slashes (`/mysite/`).
 
-### If your domain contains an underscore
+### Installation
 
-There's an annoying "[bug](https://code.djangoproject.com/ticket/19952)" in Django: If `DEBUG` is set to `False`, and your domain contains an underscore, then your site won't work in production even it works locally. You can fix this as follows:
+Follow these steps to set up and run the Django Poll Application:
 
-1. Locate the Django installation running on your production server, by running `python`, and issuing the Python commands `import django` and `django.__file__`. The output (minus the `__init__.pyc` at the end) will tell you where your Django installation is stored. `cd` into that directory.
-2. Open `http/request.py` in your favorite text editor.
-3. Find the line beginning with `host_validation_re = re.compile` (currently [line 25](https://github.com/django/django/blob/b0c56b895fd2694d7f5d4595bdbbc41916607f45/django/http/request.py#L25)).
-4. In that line, replace `[a-z0-9.-]` with `[a-z0-9.-_]`
+1. Clone the repository to your local machine:
 
-(This isn't specific to this app, but I'm documenting it here because I was really confused by this.)
+   ```bash
+   git clone https://github.com/GGurol/everything-must-go.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd everything-must-go
+   ```
+
+3. Build the docker and build:
+
+   ```bash
+   docker compose up --build -d
+   ```
+
+4. Apply database migrations:
+
+   ```bash
+   docker compose exec web python manage.py makemigrations
+   docker compose exec web python manage.py migrate
+   ```
+
+5. Create a superuser to access the admin interface:
+
+   ```bash
+   docker compose exec web python manage.py createsuperuser
+   ```
+
+
+6. Now login into admin panel, : http://localhost:8001/admin
+
+![Admin panel screenshot](Screenshot_1.png)
+
+Add Items for bidlist:
+
+![Add items](Screenshot_2.png)
+(Screenshot_3.png)
+
+
+
+
+
+
+
+
+
 
 ### Running the app
 
