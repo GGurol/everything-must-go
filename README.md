@@ -58,26 +58,13 @@ Follow these steps to set up and run the Django Poll Application:
 Add Items for bidlist:
 
 ![Add items](Screenshot_2.png)
-(Screenshot_3.png)
+![Add items](Screenshot_3.png)
 
 
 
 
 
 
-
-
-
-
-### Running the app
-
-This is standard Django stuff:
-
-Initialize the database with `python manage.py migrate`. Create an admin account with `python manage.py createsuperuser`.
-
-To run locally for development, do `python manage.py runserver` and open http://127.0.0.1 in a browser.
-
-There's not much I can say about how to run it in production, since each host will have a different procedure for deploying Django apps.
 
 ## Using the site
 
